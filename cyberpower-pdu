@@ -84,7 +84,7 @@ done
 if [[ $# -lt 2 ]]
 then
 	# List all outlets.
-	for i in {1..8}
+	for i in {1..99}
 	do
 		read -r -a STATUS < <(snmpwalk -v 2c -c private "$IP" "$OID_OUTLETS.4.$i")
 		printf "$i %-$(( $MAX_COL_SIZE + 1 ))s %-10s\n" "${OUTLETS_BY_NUM[$i]}" "${ACTIONS_STRING[${STATUS[-1]:-0}]:-${STATUS[-1]}}"
@@ -94,7 +94,7 @@ fi
 
 # Get outlet num from $2
 num="$2"
-if [[ ! $2 =~ ^[0-9]+$ ]]
+if [[ ! $2 =~ ^([0-9]{1,2})+$ ]]
 then
 	num="${OUTLETS_BY_NAME[$num]}"
 	if [[ ! "$num" ]]
