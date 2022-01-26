@@ -72,7 +72,7 @@ declare -A OUTLETS_BY_NUM
 MAX_COL_SIZE=0
 for outlet in "${OUTLETS[@]}"
 do
-	[[ $outlet =~ $OID_OUTLETS\.2\.([0-9]).{11}\"(.+)\" ]]
+	[[ $outlet =~ $OID_OUTLETS\.2\.([0-9]{1,2}).{11}\"(.+)\" ]]
 	eval "OUTLETS_BY_NUM[${BASH_REMATCH[1]}]=\"${BASH_REMATCH[2]}\""
 	eval "OUTLETS_BY_NAME["${BASH_REMATCH[2]}"]=${BASH_REMATCH[1]}"
 	if [ ${#BASH_REMATCH[2]} -gt $MAX_COL_SIZE ]; then
